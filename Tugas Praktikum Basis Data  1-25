@@ -1,0 +1,37 @@
+CREATE TABLE jurusan (
+    KodeJurusan VARCHAR(5) PRIMARY KEY,
+    NamaJurusan VARCHAR(50) NOT NULL,
+    KetuaJurusan VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE biodata (
+    NoMahasiswa INT PRIMARY KEY,
+    KodeJurusan VARCHAR(5),
+    NamaMahasiswa VARCHAR(50) NOT NULL,
+    Alamat VARCHAR(50) NOT NULL,
+    IPK DECIMAL(3, 2),
+    FOREIGN KEY (KodeJurusan) REFERENCES jurusan(KodeJurusan)
+);
+
+INSERT INTO biodata (NoMahasiswa, KodeJurusan, NamaMahasiswa, Alamat, IPK) 
+VALUES (210100, 'KD04', 'Anita Sari', 'Badung', 3.4);
+
+UPDATE biodata 
+SET NamaMahasiswa = 'Rina Gunawan Astuti' 
+WHERE NamaMahasiswa = 'Rina Gunawan';
+
+UPDATE jurusan 
+SET KodeJurusan = 'KM01' 
+WHERE KodeJurusan = 'KD01';
+
+UPDATE biodata 
+SET NoMahasiswa = 210098 
+WHERE NoMahasiswa = 210089;
+
+UPDATE biodata 
+SET IPK = 3.3 
+WHERE IPK = 3;
+
+UPDATE biodata 
+SET KodeJurusan = 'KD05' 
+WHERE KodeJurusan = 'KD03';
