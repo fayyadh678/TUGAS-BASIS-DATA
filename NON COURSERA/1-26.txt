@@ -1,0 +1,298 @@
+CREATE TABLE jurusan (
+    Kode_Jurusan VARCHAR(5),
+    Nama_Jurusan VARCHAR(50),
+    Ketua_Jurusan VARCHAR(50)
+);
+
+CREATE TABLE biodata (
+    No_Mahasiswa VARCHAR(10),
+    Kode_Jurusan VARCHAR(5),
+    Nama_Mahasiswa VARCHAR(50),
+    Alamat VARCHAR(100),
+    IPK DECIMAL(3,2)
+);
+
+INSERT INTO jurusan (Kode_Jurusan, Nama_Jurusan, Ketua_Jurusan) VALUES
+('KD01', 'Sistem Informasi', 'Harnaningrum,S.Si'),
+('KD02', 'Teknik Informatika', 'Enny Sela,S.Kom.,M.Kom'),
+('KD03', 'Teknik Komputer', 'Berta Bednar,S.Si,M.T.');
+
+INSERT INTO biodata (No_Mahasiswa, Kode_Jurusan, Nama_Mahasiswa, Alamat, IPK) VALUES
+('210089', 'KD01', 'Rina Gunawan', 'Denpasar', 3.00),
+('210090', 'KD03', 'Gani Suprapto', 'Singaraja', 3.50),
+('210012', 'KD02', 'Alexandra', 'Nusa Dua', 3.00),
+('210099', 'KD02', 'Nadine', 'Gianyar', 3.20),
+('210002', 'KD01', 'Rizal Samurai', 'Denpasar', 3.70);
+
+INSERT INTO biodata (No_Mahasiswa, Kode_Jurusan, Nama_Mahasiswa, Alamat, IPK) VALUES
+('210091', 'KD04', 'New Student', 'New Address', 3.00);
+
+UPDATE biodata
+SET Nama_Mahasiswa = 'Rina Gunawan Astuti'
+WHERE Nama_Mahasiswa = 'Rina Gunawan';
+
+UPDATE jurusan
+SET Kode_Jurusan = 'KM01'
+WHERE Kode_Jurusan = 'KD01';
+
+Dengan menambahkan data pada tabel biodata untuk kode jurusan "KD04", kita telah memperluas data mahasiswa.
+Melalui perintah UPDATE, kita berhasil mengganti informasi yang relevan berdasarkan kebutuhan, seperti memperbarui nama mahasiswa, kode jurusan, nomor mahasiswa, dan nilai IPK. Ini menunjukkan fleksibilitas dan kemudahan dalam mengelola basis data yang kompleks.
+
+
+
+SELECT barang.ID_Barang, pembelian.ID_Pembeli, pembelian.Nama_Pembeli, barang.Nama_Barang 
+FROM barang
+CROSS JOIN pembelian;
+
+SELECT barang.ID_Barang, pembelian.ID_Pembeli, pembelian.Nama_Pembeli, barang.Nama_Barang 
+FROM barang, pembelian;
+
+SELECT barang.id_barang, pembelian.id_pembeli, pembelian.nama_pembeli, barang.nama_barang 
+FROM barang
+INNER JOIN pembelian
+ON barang.id_barang = pembelian.id_barang;
+
+SELECT barang.id_barang, pembelian.id_pembeli, pembelian.nama_pembeli, barang.nama_barang 
+FROM barang
+LEFT JOIN pembelian
+ON barang.id_barang = pembelian.id_barang;
+
+SELECT barang.id_barang, pembelian.id_pembeli, pembelian.nama_pembeli, barang.nama_barang 
+FROM barang
+RIGHT JOIN pembelian
+ON barang.id_barang = pembelian.id_barang;
+
+kesimpulan tentang Perbedaan Klausa `LEFT JOIN` dan `RIGHT JOIN`
+
+1. Definisi:
+   - LEFT JOIN: Mengambil semua baris dari tabel kiri (table pertama) dan baris yang cocok dari tabel kanan (table kedua). Jika tidak ada kecocokan, nilai dari tabel kanan akan menjadi `NULL`.
+   - RIGHT JOIN: Mengambil semua baris dari tabel kanan (table kedua) dan baris yang cocok dari tabel kiri (table pertama). Jika tidak ada kecocokan, nilai dari tabel kiri akan menjadi `NULL`.
+
+2. **Arah Pengambilan Data**:
+   - LEFT JOIN: Mengutamakan data dari tabel pertama. Semua data dari tabel pertama akan ditampilkan meskipun tidak ada kecocokan di tabel kedua.
+   - RIGHT JOIN: Mengutamakan data dari tabel kedua. Semua data dari tabel kedua akan ditampilkan meskipun tidak ada kecocokan di tabel pertama.
+
+3. Penggunaan:
+   - LEFT JOIN: Sering digunakan ketika perlu memastikan bahwa semua data dari tabel utama (tabel kiri) tetap ditampilkan untuk analisis meskipun tidak ada data yang cocok di tabel yang dihubungkan.
+   - RIGHT JOIN: Berguna ketika fokus utama adalah pada data di tabel kedua, terutama dalam kasus di mana tabel kedua berisi semua informasi yang dibutuhkan dan tabel pertama mungkin tidak memiliki semua data.
+
+4. Contoh Kasus:
+   - Dalam konteks pembelian, jika kita ingin mendapatkan semua produk beserta informasi pembeli (meskipun beberapa produk belum dibeli), kita akan menggunakan `LEFT JOIN`. 
+   - Sebaliknya, jika kita ingin melihat semua pembeli dan apakah mereka telah membeli produk tertentu (meskipun beberapa pembeli tidak membeli produk apa pun), kita akan menggunakan `RIGHT JOIN`.
+
+Kesimpulan Akhir
+Baik `LEFT JOIN` maupun `RIGHT JOIN` memiliki kegunaan yang penting tergantung pada konteks data yang ingin dianalisis. Memilih jenis join yang tepat sangat penting untuk mendapatkan hasil yang akurat dalam kueri basis data.
+
+
+SELECT UPPER(nama_kolom) AS nama_besar 
+FROM nama_tabel;
+
+SELECT LOWER(nama_kolom) AS nama_kecil 
+FROM nama_tabel;
+
+SELECT ROUND(nilai_kolom, 2) AS nilai_bulat 
+FROM nama_tabel;
+
+SELECT LENGTH(nama_kolom) AS panjang_teks 
+FROM nama_tabel;
+
+SELECT TRIM(nama_kolom) AS teks_rapi 
+FROM nama_tabel;
+
+SELECT REPLACE(nama_kolom, 'lama', 'baru') AS teks_baru 
+FROM nama_tabel;
+
+SELECT SYSDATE AS tanggal_sekarang 
+FROM dual;
+
+SELECT NVL(nilai_kolom, 0) AS nilai_tidak_null 
+FROM nama_tabel;
+
+SELECT CONCAT(kolom1, kolom2) AS teks_gabungan 
+FROM nama_tabel;
+
+SELECT COUNT(*) AS total_baris 
+FROM nama_tabel;
+
+SELECT SUM(jumlah_kolom) AS total_jumlah 
+FROM nama_tabel;
+
+SELECT AVG(nilai_kolom) AS rata_rata 
+FROM nama_tabel;
+
+SELECT MAX(nilai_kolom) AS nilai_maksimum 
+FROM nama_tabel;
+
+SELECT MIN(nilai_kolom) AS nilai_minimum 
+FROM nama_tabel;
+
+SELECT nama_kolom, SUM(jumlah_kolom) AS total_jumlah 
+FROM nama_tabel
+GROUP BY nama_kolom
+HAVING SUM(jumlah_kolom) > 100
+ORDER BY total_jumlah DESC;
+
+CREATE TABLE mahasiswa (
+    npm INT PRIMARY KEY,
+    nama VARCHAR(100),
+    tahun_masuk YEAR
+);
+
+CREATE TABLE nilai (
+    npm INT,
+    mata_kuliah VARCHAR(100),
+    nilai INT,
+    FOREIGN KEY (npm) REFERENCES mahasiswa(npm)
+);
+
+INSERT INTO mahasiswa (npm, nama, tahun_masuk) VALUES
+(101, 'Alice', 2019),
+(102, 'Bob', 2019),
+(103, 'Charlie', 2020),
+(104, 'David', 2020);
+
+INSERT INTO nilai (npm, mata_kuliah, nilai) VALUES
+(101, 'Matematika', 85),
+(101, 'Fisika', 78),
+(102, 'Matematika', 92),
+(103, 'Matematika', 76),
+(104, 'Fisika', 88);
+
+SELECT nama 
+FROM mahasiswa 
+WHERE npm IN (
+    SELECT npm 
+    FROM nilai 
+    WHERE mata_kuliah = 'Matematika' AND nilai > 80
+);
+
+SELECT npm, nama FROM mahasiswa_2019
+UNION
+SELECT npm, nama FROM mahasiswa_2020;
+
+
+ELECT npm, nama FROM mahasiswa_2019 
+WHERE npm IN (
+    SELECT npm FROM mahasiswa_2020
+);
+
+atau dengan JOIN:
+
+sql
+Copy
+SELECT a.npm, a.nama 
+FROM mahasiswa_2019 a
+INNER JOIN mahasiswa_2020 b ON a.npm = b.npm;
+
+SELECT npm, nama FROM mahasiswa_2019 
+WHERE npm NOT IN (
+    SELECT npm FROM mahasiswa_2020
+);
+
+
+Kesimpulan Perbedaan Perintah INTERSECT dan EXCEPT
+INTERSECT: Menghasilkan himpunan bagian dari dua set data yang keduanya memiliki elemen yang sama. Dalam SQL, ini bisa ditiru dengan INNER JOIN atau WHERE IN.
+
+EXCEPT: Menghasilkan elemen yang terdapat dalam satu set tetapi tidak dalam yang lain. Dalam SQL, ini dapat ditiru dengan WHERE NOT IN.
+
+Penggunaan UNION menyatukan hasil dari berbagai query dengan menghilangkan duplikat, sedangkan untuk INTERSECT dan EXCEPT, kita lebih banyak bermain dengan filter dan kondisi untuk mendapatkan hasil yang diinginkan, mengoptimalkan penggunaan JOIN, dan kondisi IN serta NOT IN.
+
+
+Fungsi dari View
+View dalam basis data memiliki beberapa fungsi penting, termasuk:
+
+Abstraksi Sederhana: Menyediakan tampilan ringkas dari tabel yang kompleks, sehingga pengguna tidak perlu memahami semua detail tabel tersebut.
+Keamanan: Membatasi akses ke data sensitif dengan menampilkan hanya kolom atau baris tertentu.
+Kemudahan Pemeliharaan: Membantu dalam membuat query yang lebih mudah dibaca dan dipelihara dengan menyembunyikan logika kompleks.
+Data Agregasi dan Ringkasan: Menyediakan data yang sudah diolah atau diringkas, misalnya untuk laporan.
+
+
+Membuat View pada Basis Data "Mahasiswa"
+Berikut adalah bagaimana Anda dapat membuat view pada basis data mahasiswa_db untuk menampilkan mahasiswa dan nilai mereka pada mata kuliah "Matematika":
+
+sql
+Copy
+CREATE VIEW view_mahasiswa_matematika AS
+SELECT m.npm, m.nama, n.nilai
+FROM mahasiswa m
+JOIN nilai n ON m.npm = n.npm
+WHERE n.mata_kuliah = 'Matematika';
+SELECT * FROM view_mahasiswa_matematika;
+
+
+SELECT npm, 
+       nama,
+       CASE
+           WHEN nilai >= 85 THEN 'A'
+           WHEN nilai >= 70 THEN 'B'
+           ELSE 'C'
+       END AS grade
+FROM nilai
+WHERE mata_kuliah = 'Matematika';
+
+
+CREATE TEMPORARY TABLE temp_mahasiswa_fisika AS
+SELECT m.npm, m.nama, n.nilai
+FROM mahasiswa m
+JOIN nilai n ON m.npm = n.npm
+WHERE n.mata_kuliah = 'Fisika';
+
+SELECT * FROM temp_mahasiswa_fisika;
+
+
+
+tabel bernama jurusan dengan kolom ketua_jurusan dan ada hubungan antara mahasiswa dan jurusan. 
+
+DELIMITER //
+
+CREATE PROCEDURE TampilkanMahasiswaBerdasarkanKetua(IN namaKetua VARCHAR(100))
+BEGIN
+    SELECT m.npm, m.nama, j.nama_jurusan
+    FROM mahasiswa m
+    JOIN jurusan j ON m.jurusan_id = j.id
+    WHERE j.ketua_jurusan = namaKetua;
+END //
+
+DELIMITER ;
+
+
+CALL TampilkanMahasiswaBerdasarkanKetua('Nama Ketua Jurusan');
+
+
+DELIMITER //
+
+CREATE PROCEDURE CariKetuaJurusan(IN namaKetua VARCHAR(100))
+BEGIN
+    SELECT id, nama_jurusan, ketua_jurusan
+    FROM jurusan
+    WHERE ketua_jurusan LIKE CONCAT('%', namaKetua, '%');
+END //
+
+DELIMITER ;
+
+CALL CariKetuaJurusan('Nama Tertentu');
+
+DELIMITER //
+
+CREATE TRIGGER before_mahasiswa_insert
+BEFORE INSERT ON mahasiswa
+FOR EACH ROW
+BEGIN
+    INSERT INTO log_aktivitas (deskripsi, waktu)
+    VALUES (CONCAT('Mahasiswa baru ditambahkan: ', NEW.nama), NOW());
+END //
+
+DELIMITER ;
+
+Perbedaan antara Stored Procedure dan Fungsi
+Stored Procedure:
+
+Bisa melakukan operasi yang lebih luas termasuk DML (Data Manipulation Language) seperti INSERT, UPDATE, DELETE.
+Tidak harus mengembalikan nilai, meskipun bisa mengembalikan hasil seleksi.
+Dapat mengubah data dan juga dapat digunakan untuk tugas administratif.
+Fungsi:
+
+Harus mengembalikan satu nilai.
+Biasanya digunakan untuk penghitungan atau manipulasi data yang tidak mengubah data dalam tabel.
+Tidak disarankan untuk mengubah data dalam tabel, meskipun beberapa sistem basis data mungkin memungkinkan dalam batasan tertentu.
+Keduanya digunakan untuk menyatukan dan mengelola logika aplikasi dalam basis data, tetapi stored procedure lebih fleksibel untuk aplikasi yang lebih variatif sementara fungsi lebih spesifik untuk manipulasi dan pengembalian nilai tertentu.
